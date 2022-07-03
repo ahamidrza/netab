@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "ntab",
+  "version": "1.0",
+  "description": "The latest Hacker Noon tech stories.",
+  "author": "Hacker Noon",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "bookmarks"
+  ]
+}

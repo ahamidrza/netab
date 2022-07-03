@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="ripples.js"></script>
+    <script src="script.js"></script>
+    <style id="b">
+        :root {
+            --first-color: #f7fbfd;
+            --secound-color: #fafcfe;
+            --third-color: #f6f8fc;
+            --forth-color: #8a8a8a;
+            --five-color: #363637;
+        }
+    </style>
+    <style>
+
+        * {
+            box-sizing: border-box;
+            vertical-align: top;
+            margin: 0;
+            font-family: Manrope, sans-serif;
+            padding: 0;
+            text-transform: capitalize;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        button, body, input {
+            font-size: 1rem;
+        }
+
+        .search_engine_picker_logo {
+            width: 23px;
+        }
+
+        .search_engine_picker_button {
+            padding: 10px;
+            background-color: var(--third-color);
+            transition: .2s;
+            outline: none;
+            border: var(--third-color) solid 2px;
+            border-radius: 30px;
+        }
+
+        .search_engine_picker_button span {
+            margin-left: 10px;
+            margin-right: 10px;
+            font-weight: 500;
+            color: var(--forth-color);
+        }
+
+        .ripple {
+            background-color: #c2c3c5;
+        }
+
+        .search_engine_picker_button:hover, .feed:hover, #search_input_box:hover, #weather_box:hover {
+            box-shadow: rgba(138, 138, 138, 0.15) 0 2px 5px;
+        }
+
+        .search_engine_picker_button:active, .feed:active, #search_input_box:active, #weather_box:active {
+            box-shadow: rgba(138, 138, 138, 0.3) 0 2px 5px;
+        }
+
+        .picked_search_engine {
+            box-shadow: rgba(138, 138, 138, 0.15) 0 2px 5px;
+            border: #dae8ec solid 2px;
+            border-radius: 100px;
+        }
+
+        #search_engine_picker_list {
+            padding: 10px;
+            border-radius: 140px;
+            width: calc(100% - 50px);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--secound-color);
+        }
+
+        #search_input {
+            background-color: #ffffff;
+            transition: .2s;
+            outline: none;
+            border: unset;
+            border-radius: 30px;
+            padding: 10px 16px;
+            width: 500px;
+        }
+
+        #search_input_box {
+            box-shadow: rgba(138, 138, 138, 0.15) 0 2px 10px;
+            transition: .2s;
+            border: #ffffff solid 2px;
+            margin: 10px 10px 20px;
+            display: inline-block;
+            border-radius: 100px;
+        }
+
+        #title {
+            font-size: 60px;
+            margin-top: 90px;
+            font-weight: 200;
+        }
+
+        #weather_icon {
+            width: 70px;
+            filter: drop-shadow(rgba(138, 138, 138, 0.17) 0 2px 5px);
+            display: inline-block;
+        }
+
+        #weather {
+            color: var(--five-color);
+        }
+
+        #location {
+            font-weight: 300;
+            color: var(--forth-color);
+        }
+
+        #weather_box {
+            margin-top: 20px;
+            width: calc(100% - 20px);
+            max-width: 300px;
+            border: var(--first-color) solid 2px;
+            background-color: var(--first-color);
+            transition: .2s;
+            border-radius: 20px;
+            display: inline-block;
+            padding: 20px;
+        }
+
+        #hotnews {
+            opacity: 0;
+            height: 0;
+            transition: .2s;
+            transition-delay: .5s;
+        }
+
+        .feed {
+            text-align: left;
+            background-color: var(--first-color);
+            padding: 25px;
+            transition: .2s;
+            border: var(--first-color) solid 2px;
+            padding-top: 20px;
+            margin-top: 23px;
+            width: calc(100% - 20px);
+            margin-left: 10px;
+            border-radius: 20px;
+        }
+
+        #feed_box {
+            margin-bottom: 23px;
+        }
+
+        .feed h2 {
+            color: var(--five-color);
+        }
+
+        .feed p {
+            color: var(--forth-color);
+        }
+
+        .feed_image {
+            width: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.07);
+            height: 100px;
+            margin-top: 5px;
+            margin-right: 20px;
+            box-shadow: rgba(138, 138, 138, 0.15) 0 2px 10px;
+        }
+a{
+    text-decoration: unset;
+}
+#bookmark_list{
+    display: block;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--secound-color);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 100px;
+}
+.bookmark_item{
+    display: inline-block;
+    border-radius: 100px;
+    padding: 8px 15px;
+    color: #7a7b7c;
+    font-weight: 600;
+    background-color: var(--third-color);
+}
+#bookmark_list p{
+    color: #7a7b7c;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 5px;
+}
+    </style>
+    <link rel="stylesheet" href="flash.css">
+</head>
+<body>
+<h2 style="font-size: 25px;font-weight: 900;margin-bottom: -80px;margin-top: 50px;color: #cfd1d3" id="time"></h2>
+<h1 id="title">Netab</h1>
+<div id="search_input_box" class="md-ripples">
+    <input id="search_input" placeholder="Search what do you want from google ...">
+</div>
+<div id="search_engine_picker_list">
+    <button class="md-ripples search_engine_picker_button" id="google_search_engine_picker"><img src="google_logo.png"
+                                                                                                 class="search_engine_picker_logo"><span>google</span>
+    </button>
+    <button class="md-ripples search_engine_picker_button" id="bing_search_engine_picker"><img src="bing_logo.png"
+                                                                                               class="search_engine_picker_logo"><span>bing</span>
+    </button>
+    <button class="md-ripples search_engine_picker_button" id="yandex_search_engine_picker"><img src="yandex_logo.png"
+                                                                                                 class="search_engine_picker_logo"><span>yandex</span>
+    </button>
+    <button class="md-ripples search_engine_picker_button" id="duckduckgo_search_engine_picker"><img
+            src="duckduckgo_logo.png" class="search_engine_picker_logo"><span>duckduckgo</span></button>
+</div>
+<div id="bookmark_list">
+    <p>bookmarks :</p>
+    <a href="http://gigily.0hi.me" class="bookmark_item md-ripples">Gigily</a>
+    <a href="http://gigily.0hi.me" class="bookmark_item md-ripples">netflix</a>
+</div>
+<a id="hotnews"
+   style="display: block;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;text-decoration: unset;max-width: 600px;margin-left: auto;margin-right: auto;padding: 0 20px;color: #969a9d"></a>
+<div id="weather_box" class="md-ripples">
+    <a href="https://openweathermap.org/">
+        <img id="weather_icon" src="internet_needed.png">
+        <div style="display: inline-block;text-align: left;margin-left: 5px ;margin-right: 12px;vertical-align: middle;margin-top: 3px">
+            <h2 id="weather">N/A°F</h2>
+            <h3 id="location">N/A</h3>
+        </div>
+    </a>
+</div>
+<div id="feed_box" style="max-width: 600px;margin-left: auto;margin-right: auto">
+
+</div>
+</body>
+</html>
