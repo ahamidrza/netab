@@ -2935,7 +2935,7 @@
     }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
 window.onload = function () {
-  
+
     document.getElementById('search_input').value = '';
     let search_engine = localStorage.getItem('search_engine');
     if (search_engine === null) {
@@ -2986,59 +2986,16 @@ window.onload = function () {
         .catch(() => {
             msg.textContent = "Please search for a valid city ?";
         });
-    var params = {
-        "query": "{\"$query\":{\"$and\":[{\"locationUri\":\"http://en.wikipedia.org/wiki/United_States\"},{\"lang\":\"eng\"}]},\"$filter\":{\"dataType\":[\"news\"],\"startSourceRankPercentile\":0,\"endSourceRankPercentile\":10,\"isDuplicate\":\"skipDuplicates\"}}",
-        "resultType": "articles",
-        "articlesSortBy": "socialScore",
-        "articlesCount": 10,
-        "includeArticleBody": false,
-        "includeArticleOriginalArticle": true,
-        "articleBodyLen": -1,
-        "includeConceptLabel": false,
-        "includeConceptImage": true,
-        "includeConceptDescription": true,
-        "apiKey": "725aead8-8e23-4a39-9bec-4398b9f2322d"
-    };
-    $.ajax({
-        url: "https://newsapi.ai/api/v1/article/getArticles",
-        crossDomain: true,
-        data: params,
-        method: 'GET',
-    }).done(function (result) {
-        let v = Math.floor(Math.random() * (9 - 0 + 1) + 0);
-        document.getElementById('hotnews').style.opacity = '1';
-        document.getElementById('hotnews').style.marginTop = '20px';
-        document.getElementById('hotnews').style.height = '22px';
-        document.getElementById('hotnews').innerHTML = result.articles.results[v].source.title  + " : "+ result.articles.results[v].title;
-        document.getElementById('hotnews').href = result.articles.results[v].url;
-        for (let i = 0; i < 10; i++) {
-            document.getElementById('feed_box').innerHTML += '<div class="feed md-ripples"><a href="' + result.articles.results[i].url + '">\n' +
-                '        <img class="feed_image" src="' + result.articles.results[i].image + '">\n' +
-                '        <div style="display: inline-block;width:calc(100% - 200px)">\n' +
-                '            <h2>' + result.articles.results[i].title + '</h2>\n' +
-                '            <p style="font-size: 14px;color: #b2b5b7;font-weight: 500;margin-top:5px">' + result.articles.results[i].source.title + '</p>\n' +
-                '            <p style="margin-top: 5px;">Published On ' + result.articles.results[i].date + '</p>\n' +
-                '        </div>\n' +
-                '    </a></div>';
-            localStorage.setItem('inner_feed', document.getElementById('feed_box').innerHTML);
-        }
-    }).fail(function (err) {
-        document.getElementById('feed_box').innerHTML = '<p style="text-align: center;margin-top:25px;color:gray">feeds from last time you was online : </p>'+localStorage.getItem('inner_feed');
-    });
-    var params2 = {
-        "query": "{\"$filter\":{\"forceMaxDataTimeWindow\":\"31\",\"dataType\":[\"news\"]}}",
-        "resultType": "sourceAggr",
-        "sourceAggrSortBy": "socialScore",
-        "apiKey": "725aead8-8e23-4a39-9bec-4398b9f2322d"
-    };
-    $.ajax({
-        url: "https://newsapi.ai/api/v1/article/getArticles",
-        crossDomain: true,
-        data: params2,
-        method: 'GET',
-    }).done(function(result) {
-        console.log(result);
-    }).fail(function(err) {
-        console.error(err.statusText);
-    })
+    const url1 = `https://newsdata.io/api/1/news?apikey=pub_88947cd28d64767292e37f20138493b30465&q=tech`;
+    fetch(url1)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('hotnews').style.opacity = '1';
+            document.getElementById('hotnews').style.marginTop = '20px';
+            document.getElementById('hotnews').style.height = '22px';
+            document.getElementById('hotnews').innerHTML = data.results[0].creator + " : " + data.results[0].title;
+            document.getElementById('hotnews').href = data.results[0].link;
+        })
+        .catch(() => {
+        });
 }
