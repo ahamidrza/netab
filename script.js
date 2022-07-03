@@ -2935,16 +2935,7 @@
     }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
 window.onload = function () {
-    function onCreated(node) {
-        console.log(node);
-    }
-
-    let createBookmark = browser.bookmarks.create({
-        title: "bookmarks.create() on MDN",
-        url: "https://developer.mozilla.org/Add-ons/WebExtensions/API/bookmarks/create"
-    });
-
-    createBookmark.then(onCreated);
+  
     document.getElementById('search_input').value = '';
     let search_engine = localStorage.getItem('search_engine');
     if (search_engine === null) {
